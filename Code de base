@@ -1,20 +1,65 @@
+dict_matrice = {}
+dict_fct = {}
+
 class Matrice:
     def __init__(self, name, row, column, value):
-        self.__name = name
-        self.__row = row
-        self.__column = column
+        self.name = name
+        self.row = row
+        self.column = column
         self.value = value
 
 # on pourrait faire un truc du style : ligne1=[ x,x,x], ligne2=[x,x,x], ligne3=[x,x,x]
 # et enregistrer dans self.value self.__value = [ligne1, ligne2, ligne3]
 
     def show_size(self):
-        print("La taile de la matrice {} est de {} lignes et {} colonnes".format(self.__name, self.__row, self.__column))
+        print("La taile de la matrice {} est de {} lignes et {} colonnes".format(self.name, self.row, self.column))
+
+    def show_matrice(self):
+        print(matrice.name+" :")
+        for el in matrice.value:
+            print("       ",el)
+
 
 
 def create_matrice():
-    name, row, column = input("Quel est le nom, le nb de ligne et de colonne ? Forme nom/ligne/colonne\n").split("/")
-    a = Matrice("test", row, column, 0)
-    a.show_size()
+    global matrice
+    global list_matrice
+    name, row, column = input("Quel est le nom, le nb de ligne et de colonne ? Forme nom/ligne/colonne\n:").split("/")
+    matrice = Matrice(name, int(row), int(column), [])
+    matrice.show_size()
+    dict_matrice[matrice.name] = Matrice(name, int(row), int(column), [])
 
+def create_row_matrice():
+    global matrice
+    i = 1
+    while i <= matrice.row:
+        ligne = input("Rentrer les valeurs de la ligne n°{} format : 1/2/3\n:".format(i)).split("/")
+        if not len(ligne) != matrice.column:
+            matrice.value.append(ligne)
+            i += 1
+        else:
+            print("Le nombre de colonne est incorrect, veuillez recommencer, pour rappelle le nombre de colonne est :", matrice.column)
+    matrice.show_matrice()
+
+def show_all_matrices():
+    for el in dict_matrice:
+        print(el)
+
+def help_us():
+    global dict_fct
+    for el in dict_fct:
+        print(el, el[1])
+
+def rooter():
+    global dict_fct
+    print("hi")
+    i = 0
+    while i<1:
+        choice = input("/help pour accéder à une commande")
+        dict_fct[choice][1]
+dict_fct = {"/help":{help_us(), "Affiche la liste des commandes"}}
+list = [help_us(),1]    #ATTENTION la fct help_us est considéré comme None
+print(list)
+rooter()
 create_matrice()
+create_row_matrice()
