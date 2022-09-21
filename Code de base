@@ -1,0 +1,20 @@
+class Matrice:
+    def __init__(self, name, row, column, value):
+        self.__name = name
+        self.__row = row
+        self.__column = column
+        self.value = value
+
+# on pourrait faire un truc du style : ligne1=[ x,x,x], ligne2=[x,x,x], ligne3=[x,x,x]
+# et enregistrer dans self.value self.__value = [ligne1, ligne2, ligne3]
+
+    def show_size(self):
+        print("La taile de la matrice {} est de {} lignes et {} colonnes".format(self.__name, self.__row, self.__column))
+
+
+def create_matrice():
+    name, row, column = input("Quel est le nom, le nb de ligne et de colonne ? Forme nom/ligne/colonne\n").split("/")
+    a = Matrice("test", row, column, 0)
+    a.show_size()
+
+create_matrice()
